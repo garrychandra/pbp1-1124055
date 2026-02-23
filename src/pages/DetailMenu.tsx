@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import type { Menu } from "../types";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Button } from "@mui/material";
 
 export default function DetailMenu() {
+    const { id } = useParams();
     const [menus, setMenus ] = useState<Menu>();
     const navigate = useNavigate();
 
