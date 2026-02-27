@@ -10,7 +10,7 @@ const initialState: MenuState = {
 }
 
 export const menuSlice = createSlice({
-  name: 'auth',
+  name: 'menu',
   initialState,
   reducers: {
     setMenuList: (state, action: PayloadAction<Menu[] | undefined>) => {
