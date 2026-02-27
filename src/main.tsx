@@ -7,6 +7,8 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { AppRoutes } from './config/AppRoutes'
 import { Layout } from './components/Layout'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
 
 const theme = createTheme({
   components: {
@@ -32,14 +34,16 @@ const theme = createTheme({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <CssBaseline />
-    <ThemeProvider theme={theme}>
-        <BrowserRouter>
-        <Layout>
-          <AppRoutes />
-        </Layout>
-        </BrowserRouter>
-    </ThemeProvider>
+    <Provider store={store}>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+          <BrowserRouter>
+          <Layout>
+            <AppRoutes />
+          </Layout>
+          </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
   </StrictMode>,
 )
 

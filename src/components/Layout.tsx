@@ -7,11 +7,11 @@ export function Layout(prps: PropsWithChildren) {
   return <Stack>
     <AppBar position="static">
       <Toolbar>
-        <Box display='flex' justifyContent="space-between" flexGrow={1}>
+        <Box display='flex' alignItems='center' justifyContent="space-between" flexGrow={1}>
             <Box />
         <Box display='flex' alignItems='center' gap={2}>
-              <Button color="inherit" component={Link} to='/tambah-menu'>Tambah Menu</Button>
-              <Button color="inherit" component={Link} to='/menu-list'>List Menu</Button>
+              <Button color="inherit" style={{color: 'black'}} component={Link} to='/tambah-menu'>Tambah Menu</Button>
+              <Button color="inherit" style={{color: 'black'}} component={Link} to='/menu-list'>List Menu</Button>
 
         </Box>
         </Box>

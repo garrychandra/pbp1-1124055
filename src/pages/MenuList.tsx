@@ -3,21 +3,11 @@ import type { Menu } from "../types.ts"
 
 import { Container, Box, Grid, Card, CardActionArea, CardContent, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router";
+import { useMenus } from "../hooks/useMenus.ts";
 
 export default function MenuList() {
-    const [menus, setMenus ] = useState<Menu[]>([]);
     const navigate = useNavigate();
-
-    const reloadMenu = useCallback(async () => {
-            const response = await fetch('http://localhost:5173/api/list-menu', {method: 'GET'});
-            if(response.status !== 200){
-                alert("Failed to fetch menu");
-                return;
-            }
-            const data = await response.json();
-            console.log(data);
-            setMenus(data);
-        }, []);
+    const { menuList, reloadMenus } = useMenus();
 
     const deleteMenu = async (menuId: String) => {
         try {
@@ -26,7 +16,7 @@ export default function MenuList() {
         });
         if (response.ok) {
             alert("berhasil delete")
-            reloadMenu();
+            reloadMenus();
         } else {
             console.error('Failed to delete menu');
         }
@@ -35,15 +25,11 @@ export default function MenuList() {
         }
     }
 
-    useEffect(() => {
-        reloadMenu();
-    },[reloadMenu])
-
     return (
         <Container maxWidth={false} sx={{ width: '100%' }}>
             <Box sx={{ flexGrow: 1, width: '100%' }}>
             <Grid container spacing={2}>
-            {menus.map((menu: Menu) => (
+            {menuList.map((menu: Menu) => (
                 <Grid key={menu.id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                         <CardActionArea sx={{ flexGrow: 1 }} onClick={() => navigate(`/menu/${menu.id}`)}>
